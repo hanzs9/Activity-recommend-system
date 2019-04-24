@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -240,13 +241,11 @@ public class SortingHandler {
     	if(list.length <= 4) {
     		return list;
     	}
-    	String[] newList = new String[length];
-    	for(int i = 0; i< length/4 ; i++) {
+    	String[] newList = Arrays.copyOf(list, list.length);
+    	for(int i=0; i< length/4 ; i++) {
     		for(int j = 0; j < 4; j++) {
     			if(j == 3) {
-    				newList[j+4*i] = list[length-1-i];
-    			}else {
-    				newList[j+4*i] = list[j+3*i]; 
+    				exchange(newList,j+4*i,length-1-i);
     			}
     		}
     	}
